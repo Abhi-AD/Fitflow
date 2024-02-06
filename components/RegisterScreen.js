@@ -27,6 +27,10 @@ const RegisterScreen = () => {
       Alert.alert('Please select your gender');
       return;
     }
+    if (email.length < 5) {
+      Alert.alert('Invalid Email', 'Email must be at least 5 characters long');
+      return;
+    }
     console.log('Email:', email, 'Fullname:', fullName, 'PhoneNumber:', phoneNumber, 'Gender:', gender);
     navigation.navigate('HomePage');
   };
