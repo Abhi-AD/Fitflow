@@ -9,7 +9,8 @@ const ResendOTPButton = ({ onPress }) => (
      </TouchableOpacity>
 );
 
-const OTPPage = () => {
+const OTPPage = (props) => {
+     console.log(props.route.params,  " props")
      const navigation = useNavigation();
 
      const [otp, setOTP] = useState('');
@@ -39,14 +40,14 @@ const OTPPage = () => {
           // Handle resend OTP action here
           setTimer(10); // Reset timer
      };
-     const [phoneNumber, setPhoneNumber] = useState('');
+     // const [phoneNumbers, setPhoneNumber] = useState('');
 
 
      return (
           <View style={styles.container}>
                <Text style={styles.title}>Verify OTP</Text>
                <Text style={styles.subtitle}>Enter the code we've just sent your mobile number</Text>
-               <Text style={styles.value}>"9822946156"</Text>
+               <Text style={styles.value}>{props.route.params}</Text>
                <TextInput
                     style={[styles.otp, styles.otpWithBorder]}
                     keyboardType="numeric"
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
      },
      value: {
           fontSize: 20,
-          color: '#DDF44C',
+          color: '#fff',
           fontWeight: 'bold',
           marginBottom: 20,
      },

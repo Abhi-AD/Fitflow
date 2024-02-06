@@ -7,7 +7,7 @@ const HomePage = () => {
           <View style={styles.container}>
                <Text style={styles.header}>Organization</Text>
                <Card title="Title" content="This is the content of the card."
-                    imageSource={require('../assets/icon.png')}
+                    imageSource={require('../assets/img/boost up fitness.jpeg')}
                />
           </View>
      );

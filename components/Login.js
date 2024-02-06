@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { TextInputMask } from 'react-native-masked-text';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginPage = () => {
      const navigation = useNavigation();
-     const [phoneNumber, setPhoneNumber] = useState('');
+     const [phoneNumber, setPhoneNumber] = useState();
 
      // Function to handle continue button press
      const handleContinuePress = () => {
           // Validate the phone number
-          const extractedPhoneNumber = (phoneNumber || '').replace(/[^0-9]/g, '');
+          const dipak  = 123
 
+          console.log(dipak)
+          const extractedPhoneNumber = phoneNumber;
+          console.log(extractedPhoneNumber, " extract")
           // Check if the phone number has a total length of 10 characters
-          if (extractedPhoneNumber.length === 10 && /^\d+$/.test(extractedPhoneNumber)) {
-               navigation.navigate('OTPScreen');
+          if (extractedPhoneNumber && extractedPhoneNumber.length === 10) {
+               navigation.navigate('OTPScreen', phoneNumber);
+               console.log(phoneNumber,  " lsjflskjf")
           } else {
-               navigation.navigate('OTPScreen');
-               // Alert.alert("Invalid Phone Number", "Please enter a valid 10 digit phone number.", [{ text: "Okay" }]);
+               Alert.alert("Invalid Phone Number", "Please enter a valid 10 digit phone number.", [{ text: "Okay" }]);
+               // navigation.navigate('OTPScreen');
+               console.log(" I 'm here")
           }
      };
 
@@ -29,19 +33,17 @@ const LoginPage = () => {
                </Text>
                <Text style={styles.subtitle}>Enter your mobile number</Text>
                <View style={styles.inputContainer}>
-                    <TextInputMask
+                    <TextInput
                          style={[styles.input, styles.inputWithBorder]}
-                         type={'cel-phone'}
-                         options={{
-                              maskType: 'custom',
-                              withDDD: true,
-                              dddMask: '999' // Customize the DDD mask if needed
-                         }}
+                         type={'number'}
                          placeholder="e.g: 9800011111"
                          placeholderTextColor="#ffff"
                          value={phoneNumber}
-                         onChangeText={(formatted, extracted) => {
-                              setPhoneNumber(extracted);
+                         maxLength={10}
+                         keyboardType='numeric'
+                         onChangeText={(formatted) => {
+                              console.log(formatted, " form")
+                              setPhoneNumber(formatted);
                          }}
                     />
                     <Text style={{ color: '#fff' }}>{(phoneNumber || '').length}/10</Text>
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
      },
      input: {
           height: 50,
-          width: '80%', // Adjust this value to make it wider
+          width: '100%', // Adjust this value to make it wider
           borderColor: '#fff',
           borderWidth: 1,
           marginTop: 30,
