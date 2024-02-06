@@ -2,30 +2,36 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomePage from './components/Home';
+import LoginPage from './components/Login';
 import OTPPage from './components/OTP';
-import IndexScreen from './components/Index';
+import RegisterScreen from './components/RegisterScreen';
+import HomePage from './components/Home';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomePage">
+      <Stack.Navigator initialRouteName="LoginPage">
         <Stack.Screen
-          name="HomePage"
-          component={HomePage}
+          name="LoginPage"
+          component={LoginPage}
           options={{ headerShown: false }}
         />
 
         <Stack.Screen
-          name="NextScreen"
+          name="OTPScreen"
           component={OTPPage}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="IndexScreen"
-          component={IndexScreen}
+          name="RegisterScreen"
+          component={RegisterScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HomePage"
+          component={HomePage}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

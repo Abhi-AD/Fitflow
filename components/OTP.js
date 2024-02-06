@@ -9,7 +9,7 @@ const ResendOTPButton = ({ onPress }) => (
      </TouchableOpacity>
 );
 
-const OTPScreen = () => {
+const OTPPage = () => {
      const navigation = useNavigation();
 
      const [otp, setOTP] = useState('');
@@ -31,7 +31,7 @@ const OTPScreen = () => {
      const handleVerifyOTP = () => {
           // Here you can verify the OTP entered by the user
           console.log('Verifying OTP:', otp);
-          navigation.navigate('IndexScreen');
+          navigation.navigate('RegisterScreen');
           // Perform your verification logic here
      };
 
@@ -163,4 +163,4 @@ const styles = StyleSheet.create({
      },
 });
 
-export default OTPScreen;
+export default OTPPage;
