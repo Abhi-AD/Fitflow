@@ -10,7 +10,7 @@ const ResendOTPButton = ({ onPress }) => (
 );
 
 const OTPPage = (props) => {
-     console.log(props.route.params,  " props")
+     console.log(props.route.params, " props")
      const navigation = useNavigation();
 
      const [otp, setOTP] = useState('');
@@ -37,8 +37,7 @@ const OTPPage = (props) => {
      };
 
      const handleResendOTP = () => {
-          // Handle resend OTP action here
-          setTimer(10); // Reset timer
+          setTimer(10);
      };
      // const [phoneNumbers, setPhoneNumber] = useState('');
 

@@ -18,31 +18,38 @@ const Card = ({ title, content, imageSource }) => {
 const styles = StyleSheet.create({
     cardContainer: {
         flexDirection: 'row',
-        backgroundColor: '#3E3E32',
-        borderRadius: 10,
-        padding: 10,
-        margin: 20,
+        backgroundColor: '#292923',
+        borderRadius: 8,
+        padding: 6,
+        margin: 3,
+        height: 60, // Decreased card height
+        width: '90%', // Increased card width
+        alignSelf: 'center', // Center the card horizontally
     },
     imageContainer: {
-        flex: 1,
+        justifyContent: 'center', // Center the image vertically
+        marginRight: 8, // Decreased right margin for space between image and content
     },
     image: {
-        width: 100,
-        height: 100,
+        width: 40, // Decreased image width
+        height: 40, // Decreased image height
         resizeMode: 'cover',
-        borderRadius: 10,
+        borderRadius: 20, // half of width or height (whichever is smaller)
     },
     contentContainer: {
-        flex: 2,
-        paddingLeft: 10,
+        flex: 1, // Adjusted content container flex to take remaining space
+        paddingLeft: 8,
+        justifyContent: 'center', // Center content vertically
     },
     title: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
-        marginBottom: 5,
+        marginBottom: 4,
+        color: "#fff",
     },
     content: {
-        fontSize: 16,
+        color: "#fff",
+        fontSize: 14,
     },
 });
 

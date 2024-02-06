@@ -9,19 +9,12 @@ const LoginPage = () => {
      // Function to handle continue button press
      const handleContinuePress = () => {
           // Validate the phone number
-          const dipak  = 123
-
-          console.log(dipak)
           const extractedPhoneNumber = phoneNumber;
-          console.log(extractedPhoneNumber, " extract")
           // Check if the phone number has a total length of 10 characters
           if (extractedPhoneNumber && extractedPhoneNumber.length === 10) {
                navigation.navigate('OTPScreen', phoneNumber);
-               console.log(phoneNumber,  " lsjflskjf")
           } else {
                Alert.alert("Invalid Phone Number", "Please enter a valid 10 digit phone number.", [{ text: "Okay" }]);
-               // navigation.navigate('OTPScreen');
-               console.log(" I 'm here")
           }
      };
 
@@ -42,7 +35,6 @@ const LoginPage = () => {
                          maxLength={10}
                          keyboardType='numeric'
                          onChangeText={(formatted) => {
-                              console.log(formatted, " form")
                               setPhoneNumber(formatted);
                          }}
                     />
