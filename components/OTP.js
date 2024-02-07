@@ -1,52 +1,80 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Feather } from '@expo/vector-icons'; // Assuming you're using Expo
 
+// Reusable component for the Resend OTP button
 const ResendOTPButton = ({ onPress }) => (
      <TouchableOpacity style={styles.resendButton} onPress={onPress}>
           <Feather name="rotate-cw" size={24} color="#DDF44C" />
      </TouchableOpacity>
 );
 
+// OTPPage component
 const OTPPage = (props) => {
-     console.log(props.route.params, " props")
      const navigation = useNavigation();
 
+     // States for OTP input, timer, and generated OTP
      const [otp, setOTP] = useState('');
-     const [timer, setTimer] = useState(10); // Initial countdown time
+     const [timer, setTimer] = useState(10);
+     const [generatedOTP, setGeneratedOTP] = useState('');
 
+     // Countdown timer effect
      useEffect(() => {
           const interval = setInterval(() => {
                if (timer > 0) {
                     setTimer(timer - 1);
                } else {
                     clearInterval(interval);
-                    // Handle timeout logic here, such as disabling resend button or other actions
                }
           }, 1000);
 
           return () => clearInterval(interval);
      }, [timer]);
 
+     // Function to handle OTP verification
      const handleVerifyOTP = () => {
-          // Here you can verify the OTP entered by the user
-          console.log('Verifying OTP:', otp);
-          navigation.navigate('RegisterScreen');
-          // Perform your verification logic here
+          if (otp.length === 6) {
+               if (otp === generatedOTP) {
+                    navigation.navigate('RegisterScreen');
+               } else {
+                    Alert.alert("Invalid OTP", "The entered OTP is incorrect.");
+               }
+          } else {
+               Alert.alert("Invalid OTP", "Please enter a 6-digit OTP.");
+          }
      };
 
+     // Function to generate a random OTP
+     const generateOTP = () => {
+          const length = 6;
+          let otp = '';
+          for (let i = 0; i < length; i++) {
+               otp += Math.floor(Math.random() * 10);
+          }
+          return otp;
+     };
+
+     // Function to handle Resend OTP button click
      const handleResendOTP = () => {
+          const newOTP = generateOTP();
+          // console.log("New OTP:", newOTP); 
+          setGeneratedOTP(newOTP);
+          setOTP(newOTP);
           setTimer(10);
      };
-     // const [phoneNumbers, setPhoneNumber] = useState('');
 
+     // Generate initial OTP when component mounts
+     useEffect(() => {
+          const initialOTP = generateOTP();
+          setGeneratedOTP(initialOTP);
+          setOTP(initialOTP);
+     }, []);
 
      return (
           <View style={styles.container}>
                <Text style={styles.title}>Verify OTP</Text>
                <Text style={styles.subtitle}>Enter the code we've just sent your mobile number</Text>
-               <Text style={styles.value}>{props.route.params}</Text>
                <TextInput
                     style={[styles.otp, styles.otpWithBorder]}
                     keyboardType="numeric"
@@ -56,6 +84,8 @@ const OTPPage = (props) => {
                     value={otp}
                     maxLength={6}
                />
+               <Text style={{ color: '#fff' }}>{(otp || '').length}/6</Text>
+
                <TouchableOpacity style={styles.button} onPress={handleVerifyOTP}>
                     <Text style={styles.buttonText}>Verify</Text>
                </TouchableOpacity>
@@ -65,9 +95,6 @@ const OTPPage = (props) => {
                     </Text>
                     {timer <= 0 && <ResendOTPButton onPress={handleResendOTP} />}
                </View>
-
-
-
           </View>
      );
 };
@@ -76,8 +103,7 @@ const styles = StyleSheet.create({
      resendContainer: {
           flexDirection: 'row',
           alignItems: 'center',
-     }
-     ,
+     },
      container: {
           flex: 1,
           justifyContent: 'center',
@@ -97,12 +123,6 @@ const styles = StyleSheet.create({
           marginBottom: 30,
           textAlign: 'center',
      },
-     value: {
-          fontSize: 20,
-          color: '#fff',
-          fontWeight: 'bold',
-          marginBottom: 20,
-     },
      otp: {
           height: 50,
           width: '50%',
@@ -118,23 +138,6 @@ const styles = StyleSheet.create({
           borderWidth: 2,
           borderColor: '#B1B185',
           borderRadius: 8,
-     },
-
-
-
-
-
-
-     input: {
-          height: 50,
-          color: '#fff',
-          width: '100%',
-          borderColor: 'gray',
-          borderWidth: 1,
-          borderRadius: 5,
-          paddingLeft: 10,
-          marginBottom: 20,
-          fontSize: 18,
      },
      button: {
           backgroundColor: '#DDF44C',

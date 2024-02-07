@@ -72,6 +72,17 @@ const styles = StyleSheet.create({
           fontSize: 18,
           color: '#fff',
      },
+     inputContainer: {
+          width: '75%',
+          borderWidth: 1,
+          borderRadius: 10,
+          paddingHorizontal: 16,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: 48,
+          
+     },
      input: {
           height: 50,
           width: '100%', // Adjust this value to make it wider
