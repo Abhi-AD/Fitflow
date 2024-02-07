@@ -15,12 +15,15 @@ const JoinWithCode = ({ route }) => { // Access route.params directly
      }, []);
 
      const handleJoin = () => {
-          if (organizationCode.trim() === '') {
-               Alert.alert('Error', 'Please enter a valid organization code.');
-               return;
+          if (organizationCode.length === 7) {
+               if (organizationCode === '1234567') {
+                    Alert.alert("Success");
+               } else {
+                    Alert.alert("Invalid OTP", "The entered OTP is incorrect.");
+               }
+          } else {
+               Alert.alert("Invalid OTP", "Please enter a 7-digit OTP.");
           }
-          console.log('Joining with organization code:', organizationCode);
-          setOrganizationCode('');
      };
 
      const openScanner = () => {
@@ -47,20 +50,22 @@ const JoinWithCode = ({ route }) => { // Access route.params directly
                     <View style={styles.qrCodeIconWrapper}>
                          <Icon name="qr-code-outline" size={150} color="#DDF44C" />
                     </View>
-                    <Text style={styles.camera}>Tap on the OR to open the scanner.</Text>
+                    <Text style={styles.camera}>Tap on the QR code to open the scanner.</Text>
                </TouchableOpacity>
                <Text style={styles.body}>Or,{'\n'}Join by scanning QR code.</Text>
-               <Text style={styles.body_content}>Enter the 8 digit organization code tp directly become the member of your fitness club.</Text>
+               <Text style={styles.body_content}>Enter the 7-digit organization code to directly become a member of your fitness club.</Text>
 
                <TextInput
                     style={[styles.input, { borderColor: isFocused ? '#1874FA' : '#fff' }]}
-                    placeholder="FIFL999"
+                    placeholder="1234567"
                     placeholderTextColor="gray"
                     onChangeText={text => setOrganizationCode(text)}
                     value={organizationCode}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
+                    maxLength={7}
                />
+               <Text style={{ color: '#fff' }}>{(organizationCode || '').length}/7</Text>
                <TouchableOpacity style={styles.button} onPress={handleJoin}>
                     <Text style={styles.buttonText}>Continue with Code</Text>
                </TouchableOpacity >
@@ -126,6 +131,7 @@ const styles = StyleSheet.create({
           alignItems: 'center',
           justifyContent: 'center',
           marginTop: '3%',
+
      },
      qrCodeIconWrapper: {
           alignItems: 'center',

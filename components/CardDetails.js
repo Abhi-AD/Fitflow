@@ -1,6 +1,7 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, Hor } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import your preferred icon library
+import { BlurView } from '@react-native-community/blur';
 
 const CardDetails = ({ route, navigation }) => {
      const { title, content, imageSource, email, owner, phonenumber } = route.params;
@@ -42,6 +43,9 @@ const CardDetails = ({ route, navigation }) => {
                               </View>
                          </View>
                     </View>
+
+
+
                     <View style={styles.body}>
                          <Text style={styles.body_title}>Join with Organization Code</Text>
                          <Text style={styles.body_content}>If you have an organization code, you can directly join by using a unique 8-character code.</Text>
@@ -103,6 +107,7 @@ const styles = StyleSheet.create({
           width: windowWidth,
           height: windowHeight * 0.5, // Covering 50% of the window height
           resizeMode: 'cover',
+
      },
      detailsContainer: {
           alignItems: 'center', // Aligning items to center
@@ -117,6 +122,7 @@ const styles = StyleSheet.create({
           color: 'white',
      },
      logo: {
+          marginTop: "-60%",
           width: windowWidth * 0.3,
           height: windowWidth * 0.3,
           borderRadius: (windowWidth * 0.3) / 2,
@@ -184,6 +190,27 @@ const styles = StyleSheet.create({
           color: 'black',
           fontSize: 16,
           fontWeight: 'bold',
+     },
+     header: {
+          borderBottomColor: 'white',
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          marginVertical: 10,
+          marginLeft:10,
+          marginRight:10,
+     },
+     body: {
+          borderBottomColor: 'white',
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          marginVertical: 10,
+          marginLeft:10,
+          marginRight:10,
+     },
+     footer: {
+          borderBottomColor: 'white',
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          marginVertical: 10,
+          marginLeft:10,
+          marginRight:10,
      },
 });
 
