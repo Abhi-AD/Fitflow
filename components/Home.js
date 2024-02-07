@@ -39,6 +39,7 @@ const cards = [
           email: "healthyheartfitness@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
      {
           title: "Epic Fitness",
@@ -47,6 +48,7 @@ const cards = [
           email: "epic.fitness02@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
      {
           title: "Healthy Heart Fitness",
@@ -55,6 +57,7 @@ const cards = [
           email: "healthyheartfitness@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
      {
           title: "Epic Fitness",
@@ -63,6 +66,7 @@ const cards = [
           email: "epic.fitness02@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
      {
           title: "Healthy Heart Fitness",
@@ -71,6 +75,7 @@ const cards = [
           email: "healthyheartfitness@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
      {
           title: "Epic Fitness",
@@ -79,6 +84,7 @@ const cards = [
           email: "epic.fitness02@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
      {
           title: "Healthy Heart Fitness",
@@ -87,6 +93,7 @@ const cards = [
           email: "healthyheartfitness@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
      {
           title: "Epic Fitness",
@@ -95,6 +102,7 @@ const cards = [
           email: "epic.fitness02@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
      {
           title: "Healthy Heart Fitness",
@@ -103,6 +111,7 @@ const cards = [
           email: "healthyheartfitness@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
      {
           title: "Epic Fitness",
@@ -111,6 +120,7 @@ const cards = [
           email: "epic.fitness02@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
      {
           title: "Healthy Heart Fitness",
@@ -119,6 +129,7 @@ const cards = [
           email: "healthyheartfitness@gmail.com",
           phonenumber: '9808231722',
           owner: 'Rijan Maharjan',
+
      },
 ];
 
@@ -132,7 +143,7 @@ const HomePage = ({ navigation }) => {
                <Text style={styles.header}>Organization</Text>
                <ScrollView>
                     {cards.map((card, index) => (
-                         <TouchableOpacity key={index} onPress={() => handleCardPress(card.title, card.content, card.imageSource, card.email, card.owner,card.phonenumber)}>
+                         <TouchableOpacity key={index} onPress={() => handleCardPress(card.title, card.content, card.imageSource, card.email, card.owner, card.phonenumber)}>
                               <Card title={card.title} content={card.content} imageSource={card.imageSource} />
                          </TouchableOpacity>
                     ))}

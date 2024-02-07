@@ -7,6 +7,7 @@ import OTPPage from './components/OTP';
 import RegisterScreen from './components/RegisterScreen';
 import HomePage from './components/Home';
 import CardDetails from './components/CardDetails';
+import JoinWithCode from './components/JoinWithCode';
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,11 @@ const App = () => {
         <Stack.Screen
           name="CardDetails"
           component={CardDetails}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="JoinWithCode"
+          component={JoinWithCode}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

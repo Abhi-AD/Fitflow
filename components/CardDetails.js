@@ -5,6 +5,10 @@ import Icon from 'react-native-vector-icons/FontAwesome'; // Import your preferr
 const CardDetails = ({ route, navigation }) => {
      const { title, content, imageSource, email, owner, phonenumber } = route.params;
 
+     const handleJoinWithCode = () => {
+          navigation.navigate('JoinWithCode');
+     };
+
      return (
           <View style={styles.container}>
                <ScrollView>
@@ -41,13 +45,13 @@ const CardDetails = ({ route, navigation }) => {
                     <View style={styles.body}>
                          <Text style={styles.body_title}>Join with Organization Code</Text>
                          <Text style={styles.body_content}>If you have an organization code, you can directly join by using a unique 8-character code.</Text>
-                         <TouchableOpacity style={styles.button}>
+                         <TouchableOpacity style={styles.button} onPress={handleJoinWithCode}>
                               <Text style={styles.buttonText}>Join With Code</Text>
                          </TouchableOpacity >
                     </View>
                     <View style={styles.footer}>
                          <Text style={styles.footer_title}>Or, you can request for Membership.</Text>
-                         <TouchableOpacity style={styles.footer_button}>
+                         <TouchableOpacity style={styles.footer_button} onPress={() => navigation.goBack()}>
                               <Text style={styles.footer_buttonText}>Request Membership</Text>
                          </TouchableOpacity >
                     </View>
