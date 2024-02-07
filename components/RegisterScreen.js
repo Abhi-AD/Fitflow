@@ -2,19 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const RegisterScreen = () => {
+const RegisterScreen = (props) => {
   const navigation = useNavigation(); // Initialize navigation
-
+  const { phoneNumber, setPhoneNumber } = props.route.params;
   const [gender, setGender] = useState('male');
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
 
   const handleContinue = () => {
-    if (!validatePhoneNumber(phoneNumber)) {
-      Alert.alert('Invalid Phone Number', 'Please enter a valid phone number');
-      return;
-    }
     if (!validateName(fullName)) {
       Alert.alert('Invalid Name', 'Please enter a valid name');
       return;
@@ -35,27 +30,25 @@ const RegisterScreen = () => {
     navigation.navigate('HomePage');
   };
 
-  const validatePhoneNumber = (phoneNumber) => {
-    return /^\d{10}$/u.test(phoneNumber);
-  };
-
   const validateName = (name) => {
     return name.trim().length > 0; // Checks if the name is not empty after trimming whitespace
   };
 
   const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // Checks if the email matches basic email pattern
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.endsWith('.com'); // Ensure email contains '@' and ends with '.com'
   };
+  
+
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Create New Account</Text>
-
       <Text style={styles.input}>Mobile Number</Text>
       <TextInput
         style={[styles.forms, styles.formsWithBorder]}
         placeholder="Enter Your Phone number"
         placeholderTextColor="#c1c1c1"
+        value={phoneNumber}
         onChangeText={setPhoneNumber}
         keyboardType="phone-pad"
       />

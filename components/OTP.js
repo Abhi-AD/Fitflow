@@ -36,7 +36,7 @@ const OTPPage = (props) => {
      const handleVerifyOTP = () => {
           if (otp.length === 6) {
                if (otp === generatedOTP) {
-                    navigation.navigate('RegisterScreen');
+                    navigation.navigate('RegisterScreen', { phoneNumber: props.route.params });
                } else {
                     Alert.alert("Invalid OTP", "The entered OTP is incorrect.");
                }
@@ -75,6 +75,8 @@ const OTPPage = (props) => {
           <View style={styles.container}>
                <Text style={styles.title}>Verify OTP</Text>
                <Text style={styles.subtitle}>Enter the code we've just sent your mobile number</Text>
+               <Text style={styles.phoneNumber}>"{props.route.params}"</Text>
+
                <TextInput
                     style={[styles.otp, styles.otpWithBorder]}
                     keyboardType="numeric"
@@ -114,6 +116,12 @@ const styles = StyleSheet.create({
      title: {
           fontSize: 24,
           color: '#fff',
+          fontWeight: 'bold',
+          marginBottom: 20,
+     },
+     phoneNumber: {
+          color: "#DDF44C",
+          fontSize: 24,
           fontWeight: 'bold',
           marginBottom: 20,
      },

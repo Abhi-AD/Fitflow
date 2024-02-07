@@ -7,16 +7,23 @@ const LoginPage = () => {
      const [phoneNumber, setPhoneNumber] = useState();
 
      // Function to handle continue button press
+     // Function to handle continue button press
      const handleContinuePress = () => {
           // Validate the phone number
           const extractedPhoneNumber = phoneNumber;
           // Check if the phone number has a total length of 10 characters
           if (extractedPhoneNumber && extractedPhoneNumber.length === 10) {
-               navigation.navigate('OTPScreen', phoneNumber);
+               // Check if the phone number starts with '98' or '97'
+               if (extractedPhoneNumber.startsWith('98') || extractedPhoneNumber.startsWith('97')) {
+                    navigation.navigate('OTPScreen', phoneNumber);
+               } else {
+                    Alert.alert("Invalid Phone Number", "Please enter a phone number starting with '98' or '97'.", [{ text: "Okay" }]);
+               }
           } else {
                Alert.alert("Invalid Phone Number", "Please enter a valid 10 digit phone number.", [{ text: "Okay" }]);
           }
      };
+
 
      return (
           <View style={styles.container}>
@@ -81,7 +88,7 @@ const styles = StyleSheet.create({
           alignItems: 'center',
           justifyContent: 'space-between',
           height: 48,
-          
+
      },
      input: {
           height: 50,
