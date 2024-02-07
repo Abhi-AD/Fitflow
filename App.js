@@ -6,13 +6,14 @@ import LoginPage from './components/Login';
 import OTPPage from './components/OTP';
 import RegisterScreen from './components/RegisterScreen';
 import HomePage from './components/Home';
+import CardDetails from './components/CardDetails';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="LoginPage">
+      <Stack.Navigator initialRouteName="HomePage">
         <Stack.Screen
           name="LoginPage"
           component={LoginPage}
@@ -32,6 +33,11 @@ const App = () => {
         <Stack.Screen
           name="HomePage"
           component={HomePage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CardDetails"
+          component={CardDetails}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
