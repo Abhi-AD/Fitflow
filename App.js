@@ -18,12 +18,13 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const HomeStack = () => (
-  <Stack.Navigator initialRouteName="HomePage" screenOptions={{ headerShown: false }}>
+  <Stack.Navigator initialRouteName="LoginPage" screenOptions={{ headerShown: false }}>
     <Stack.Screen name="HomePage" component={HomePage} />
     <Stack.Screen name="CardDetails" component={CardDetails} />
     <Stack.Screen name="LoginPage" component={LoginPage} />
     <Stack.Screen name="OTPPage" component={OTPPage} />
     <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+    <Stack.Screen name="JoinWithCode" component={JoinWithCode} />
   </Stack.Navigator>
 );
 
@@ -31,10 +32,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        screenOptions={{ headerShown: false }}
-        tabBarOptions={{
-          activeTintColor: 'tomato',
-          inactiveTintColor: 'gray',
+        screenOptions={{ 
+          headerShown: false,
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
         }}
       >
         <Tab.Screen

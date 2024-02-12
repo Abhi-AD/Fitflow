@@ -156,10 +156,10 @@ const styles = StyleSheet.create({
      container: {
           flex: 1,
           justifyContent: 'flex-start',
-          backgroundColor: 'black',
+          // backgroundColor: 'black',
      },
      header: {
-          color: "#fff",
+          // color: "#fff",
           fontSize: 20,
           textAlign: "left",
           fontWeight: 'bold',

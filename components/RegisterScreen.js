@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#DDF44C',
     padding: 20,
     alignSelf: 'stretch',
-    marginTop: 250,
+    marginTop: 180,
     borderRadius: 18,
     alignItems: "center",
     justifyContent: "center",

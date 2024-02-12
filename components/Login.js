@@ -15,7 +15,7 @@ const LoginPage = () => {
           if (extractedPhoneNumber && extractedPhoneNumber.length === 10) {
                // Check if the phone number starts with '98' or '97'
                if (extractedPhoneNumber.startsWith('98') || extractedPhoneNumber.startsWith('97')) {
-                    navigation.navigate('OTPScreen', phoneNumber);
+                    navigation.navigate('OTPPage', phoneNumber);
                } else {
                     Alert.alert("Invalid Phone Number", "Please enter a phone number starting with '98' or '97'.", [{ text: "Okay" }]);
                }
