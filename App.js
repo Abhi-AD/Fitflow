@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -24,20 +25,6 @@ const HomeStack = () => (
     <Stack.Screen name="JoinWithCode" component={JoinWithCode} />
   </Stack.Navigator>
 );
-
-const App = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="LoginPage" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="HomePage" component={TabNavigator} />
-        <Stack.Screen name="LoginPage" component={LoginPage} />
-        <Stack.Screen name="OTPPage" component={OTPPage} />
-        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-        <Stack.Screen name="JoinWithCode" component={JoinWithCode} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
 
 const TabNavigator = () => (
   <Tab.Navigator
@@ -76,5 +63,18 @@ const TabNavigator = () => (
     />
   </Tab.Navigator>
 );
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="LoginPage" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="TabNavigator" component={TabNavigator} />
+        <Stack.Screen name="LoginPage" component={LoginPage} />
+        <Stack.Screen name="OTPPage" component={OTPPage} />
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
 export default App;

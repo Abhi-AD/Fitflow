@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+
 
 const Profile = () => {
+  const route = useRoute();
+  const { params } = route;
+  if (!params) {
+    return (
+      <View style={styles.container}>
+        <Text>Error: Parameters not passed</Text>
+      </View>
+    );
+  }
+  const { phoneNumber, gender, fullName, email } = params;
+
   const [profileImage, setProfileImage] = useState(require('../assets/profile.png'));
 
   const handleUpdateImage = () => {
@@ -13,9 +26,10 @@ const Profile = () => {
       <View style={styles.profileContainer}>
         <Image source={profileImage} style={styles.profileImage} />
         <View style={styles.userInfo}>
-          <Text style={styles.userInfoText}>Name: Abhishek Dangi</Text>
-          <Text style={styles.userInfoText}>Phone: +1234567890</Text>
-          <Text style={styles.userInfoText}>Email: example@example.com</Text>
+          <Text style={styles.userInfoText}>Name: {fullName}</Text>
+          <Text style={styles.userInfoText}>Phone: {phoneNumber}</Text>
+          <Text style={styles.userInfoText}>Email: {email}</Text>
+          <Text style={styles.userInfoText}>Gender: {gender}</Text>
         </View>
       </View>
       <TouchableOpacity style={styles.updateButton} onPress={handleUpdateImage}>

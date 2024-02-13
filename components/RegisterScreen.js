@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { ViewPropTypes } from 'deprecated-react-native-prop-types';
-
-
 
 const RegisterScreen = (props) => {
   const navigation = useNavigation(); // Initialize navigation
@@ -33,7 +30,17 @@ const RegisterScreen = (props) => {
       return;
     }
     console.log('Email:', lowercaseEmail, 'Fullname:', fullName, 'PhoneNumber:', phoneNumber, 'Gender:', gender);
-    navigation.navigate('HomePage');
+    navigation.navigate('TabNavigator', {
+      screen: 'Profile',
+      params: {
+        phoneNumber: phoneNumber,
+        gender: gender,
+        fullName: fullName,
+        email: lowercaseEmail
+      }
+    });
+    
+
   };
 
   const validateName = (name) => {
@@ -43,8 +50,6 @@ const RegisterScreen = (props) => {
   const validateEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.endsWith('.com'); // Ensure email contains '@' and ends with '.com'
   };
-  
-
 
   return (
     <View style={styles.container}>
