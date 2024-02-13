@@ -18,12 +18,9 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const HomeStack = () => (
-  <Stack.Navigator initialRouteName="LoginPage" screenOptions={{ headerShown: false }}>
+  <Stack.Navigator initialRouteName="HomePage" screenOptions={{ headerShown: false }}>
     <Stack.Screen name="HomePage" component={HomePage} />
     <Stack.Screen name="CardDetails" component={CardDetails} />
-    <Stack.Screen name="LoginPage" component={LoginPage} />
-    <Stack.Screen name="OTPPage" component={OTPPage} />
-    <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
     <Stack.Screen name="JoinWithCode" component={JoinWithCode} />
   </Stack.Navigator>
 );
@@ -31,43 +28,53 @@ const HomeStack = () => (
 const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{ 
-          headerShown: false,
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
-        }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeStack}
-          options={{
-            tabBarIcon: ({ focused, color, size }) => (
-              <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            tabBarIcon: ({ focused, color, size }) => (
-              <Ionicons name={focused ? 'person' : 'person-outline'} size={size} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Settings"
-          component={Settings}
-          options={{
-            tabBarIcon: ({ focused, color, size }) => (
-              <Ionicons name={focused ? 'settings' : 'settings-outline'} size={size} color={color} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+      <Stack.Navigator initialRouteName="LoginPage" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="HomePage" component={TabNavigator} />
+        <Stack.Screen name="LoginPage" component={LoginPage} />
+        <Stack.Screen name="OTPPage" component={OTPPage} />
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+        <Stack.Screen name="JoinWithCode" component={JoinWithCode} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
+const TabNavigator = () => (
+  <Tab.Navigator
+    screenOptions={{ 
+      headerShown: false,
+      tabBarActiveTintColor: 'tomato',
+      tabBarInactiveTintColor: 'gray',
+    }}
+  >
+    <Tab.Screen
+      name="Home"
+      component={HomeStack}
+      options={{
+        tabBarIcon: ({ focused, color, size }) => (
+          <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Profile"
+      component={Profile}
+      options={{
+        tabBarIcon: ({ focused, color, size }) => (
+          <Ionicons name={focused ? 'person' : 'person-outline'} size={size} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Settings"
+      component={Settings}
+      options={{
+        tabBarIcon: ({ focused, color, size }) => (
+          <Ionicons name={focused ? 'settings' : 'settings-outline'} size={size} color={color} />
+        ),
+      }}
+    />
+  </Tab.Navigator>
+);
 
 export default App;

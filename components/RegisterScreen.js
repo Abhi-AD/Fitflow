@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
+
+
 
 const RegisterScreen = (props) => {
   const navigation = useNavigation(); // Initialize navigation
@@ -10,11 +13,14 @@ const RegisterScreen = (props) => {
   const [email, setEmail] = useState('');
 
   const handleContinue = () => {
+    const lowercaseEmail = email.toLowerCase(); // Convert email to lowercase
+    setEmail(lowercaseEmail); // Update email state with lowercase value
+
     if (!validateName(fullName)) {
       Alert.alert('Invalid Name', 'Please enter a valid name');
       return;
     }
-    if (!validateEmail(email)) {
+    if (!validateEmail(lowercaseEmail)) { // Validate lowercase email
       Alert.alert('Invalid Email', 'Please enter a valid email address');
       return;
     }
@@ -22,11 +28,11 @@ const RegisterScreen = (props) => {
       Alert.alert('Please select your gender');
       return;
     }
-    if (email.length < 5) {
+    if (lowercaseEmail.length < 5) {
       Alert.alert('Invalid Email', 'Email must be at least 5 characters long');
       return;
     }
-    console.log('Email:', email, 'Fullname:', fullName, 'PhoneNumber:', phoneNumber, 'Gender:', gender);
+    console.log('Email:', lowercaseEmail, 'Fullname:', fullName, 'PhoneNumber:', phoneNumber, 'Gender:', gender);
     navigation.navigate('HomePage');
   };
 
@@ -64,7 +70,7 @@ const RegisterScreen = (props) => {
         style={[styles.forms, styles.formsWithBorder]}
         placeholder="xyz@example.com"
         placeholderTextColor="#c1c1c1"
-        onChangeText={setEmail}
+        onChangeText={setEmail} // Update email state without converting to lowercase here
         keyboardType="email-address"
       />
       <Text style={styles.input}>Your Gender</Text>

@@ -35,16 +35,17 @@ const LoginPage = () => {
                <View style={styles.inputContainer}>
                     <TextInput
                          style={[styles.input, styles.inputWithBorder]}
-                         type={'number'}
                          placeholder="e.g: 9800011111"
                          placeholderTextColor="#ffff"
                          value={phoneNumber}
                          maxLength={10}
                          keyboardType='numeric'
                          onChangeText={(formatted) => {
-                              setPhoneNumber(formatted);
+                              const formattedPhoneNumber = formatted.replace(/[^0-9]/g, '');
+                              setPhoneNumber(formattedPhoneNumber);
                          }}
                     />
+
                     <Text style={{ color: '#fff' }}>{(phoneNumber || '').length}/10</Text>
                </View>
                <TouchableOpacity style={styles.button} onPress={handleContinuePress}>

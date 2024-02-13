@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet, StatusBar } from 'react-native';
 
-const Settings = () => {
+
+const AdditionalPage = () => {
   const [darkModeEnabled, setDarkModeEnabled] = useState(false);
+  const [notificationEnabled, setNotificationEnabled] = useState(false);
 
   const toggleDarkMode = () => {
     setDarkModeEnabled(previousState => !previousState);
-    // You can add more logic here to handle dark mode changes, such as updating styles or themes.
+  };
+
+  const toggleNotification = () => {
+    setNotificationEnabled(previousState => !previousState);
   };
 
   return (
@@ -14,7 +19,7 @@ const Settings = () => {
       <StatusBar barStyle={darkModeEnabled ? 'light-content' : 'dark-content'} />
       <Text style={[styles.pageTitle, darkModeEnabled && styles.darkModeText]}>Additional Page</Text>
       <Text style={[styles.pageContent, darkModeEnabled && styles.darkModeText]}>
-        This is some content on the additional page.
+        Welcome to fitflow app
       </Text>
       <View style={styles.switchContainer}>
         <Text style={[styles.switchText, darkModeEnabled && styles.darkModeText]}>Dark Mode</Text>
@@ -24,6 +29,16 @@ const Settings = () => {
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleDarkMode}
           value={darkModeEnabled}
+        />
+      </View>
+      <View style={styles.switchContainer}>
+        <Text style={[styles.switchText, darkModeEnabled && styles.darkModeText]}>Notifications</Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={notificationEnabled ? "#f5dd4b" : "#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleNotification}
+          value={notificationEnabled}
         />
       </View>
     </View>
@@ -68,4 +83,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Settings;
+export default AdditionalPage;
