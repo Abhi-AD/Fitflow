@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet, StatusBar } from 'react-native';
 
 
-const AdditionalPage = () => {
+const Settings = () => {
   const [darkModeEnabled, setDarkModeEnabled] = useState(false);
   const [notificationEnabled, setNotificationEnabled] = useState(false);
 
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AdditionalPage;
+export default Settings;

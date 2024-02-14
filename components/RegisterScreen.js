@@ -44,11 +44,11 @@ const RegisterScreen = (props) => {
   };
 
   const validateName = (name) => {
-    return name.trim().length > 0; // Checks if the name is not empty after trimming whitespace
+    return name.trim().length > 0; 
   };
 
   const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.endsWith('.com'); // Ensure email contains '@' and ends with '.com'
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.endsWith('.com'); 
   };
 
   return (

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import { Picker } from '@react-native-picker/picker';
+
 
 
 const Profile = () => {
   const route = useRoute();
   const { params } = route;
+
   if (!params) {
     return (
       <View style={styles.container}>
@@ -13,11 +16,28 @@ const Profile = () => {
       </View>
     );
   }
-  const { phoneNumber, gender, fullName, email } = params;
+
+  const { phoneNumber, gender: initialGender, fullName: initialFullName, email } = params;
 
   const [profileImage, setProfileImage] = useState(require('../assets/profile.png'));
+  const [fullName, setFullName] = useState(initialFullName.split(' ')[0]);
+  const [gender, setGender] = useState(initialGender);
+  const [isImageUpdated, setIsImageUpdated] = useState(false);
+
+  const capitalizeFullLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
   const handleUpdateImage = () => {
+    setIsImageUpdated(true);
+  };
+
+  const handleFullNameChange = (text) => {
+    setFullName(text);
+  };
+
+  const handleGenderChange = (value) => {
+    setGender(value);
   };
 
   return (
@@ -26,15 +46,33 @@ const Profile = () => {
       <View style={styles.profileContainer}>
         <Image source={profileImage} style={styles.profileImage} />
         <View style={styles.userInfo}>
-          <Text style={styles.userInfoText}>Name: {fullName}</Text>
+          <TextInput
+            style={styles.input}
+            value={fullName}
+            onChangeText={handleFullNameChange}
+            placeholder="Name"
+          />
           <Text style={styles.userInfoText}>Phone: {phoneNumber}</Text>
           <Text style={styles.userInfoText}>Email: {email}</Text>
-          <Text style={styles.userInfoText}>Gender: {gender}</Text>
+          <View style={styles.genderContainer}>
+            <Text style={styles.label}>Gender:</Text>
+            <Picker
+              selectedValue={gender}
+              style={{ height: 50, width: 150 }}
+              onValueChange={handleGenderChange}>
+              <Picker.Item label="Male" value="male" />
+              <Picker.Item label="Female" value="female" />
+              <Picker.Item label="Other" value="other" />
+            </Picker>
+          </View>
         </View>
+
       </View>
-      <TouchableOpacity style={styles.updateButton} onPress={handleUpdateImage}>
-        <Text style={styles.buttonText}>Update Profile Image</Text>
-      </TouchableOpacity>
+      {isImageUpdated ? null : (
+        <TouchableOpacity style={styles.updateButton} onPress={handleUpdateImage}>
+          <Text style={styles.buttonText}>Update Profile Image</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -54,7 +92,7 @@ const styles = StyleSheet.create({
   profileContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center', // Center the profileContainer horizontally
+    justifyContent: 'center',
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 20,
@@ -90,6 +128,23 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 16,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingLeft: 5,
+    paddingRight: 5,
+    borderRadius: 5,
+    width: '100%',
+  },
+  genderContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  label: {
+    marginRight: 10,
   },
 });
 
