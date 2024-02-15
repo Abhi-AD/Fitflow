@@ -28,7 +28,7 @@ const HomeStack = () => (
 
 const TabNavigator = () => (
   <Tab.Navigator
-    screenOptions={{ 
+    screenOptions={{
       headerShown: false,
       tabBarActiveTintColor: 'tomato',
       tabBarInactiveTintColor: 'gray',
