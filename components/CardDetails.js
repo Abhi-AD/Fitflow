@@ -1,7 +1,6 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, Hor } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import your preferred icon library
-import { BlurView } from '@react-native-community/blur';
 
 const CardDetails = ({ route, navigation }) => {
      const { title, content, imageSource, email, owner, phonenumber } = route.params;

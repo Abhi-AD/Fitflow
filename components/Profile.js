@@ -3,8 +3,6 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput } from 'reac
 import { useRoute } from '@react-navigation/native';
 import { Picker } from '@react-native-picker/picker';
 
-
-
 const Profile = () => {
   const route = useRoute();
   const { params } = route;
@@ -20,7 +18,7 @@ const Profile = () => {
   const { phoneNumber, gender: initialGender, fullName: initialFullName, email } = params;
 
   const [profileImage, setProfileImage] = useState(require('../assets/profile.png'));
-  const [fullName, setFullName] = useState(initialFullName.split(' ')[0]);
+  const [fullName, setFullName] = useState(initialFullName);
   const [gender, setGender] = useState(initialGender);
   const [isImageUpdated, setIsImageUpdated] = useState(false);
 
@@ -46,12 +44,7 @@ const Profile = () => {
       <View style={styles.profileContainer}>
         <Image source={profileImage} style={styles.profileImage} />
         <View style={styles.userInfo}>
-          <TextInput
-            style={styles.input}
-            value={fullName}
-            onChangeText={handleFullNameChange}
-            placeholder="Name"
-          />
+          <Text style={styles.userInfoText}>Name: {fullName}</Text>
           <Text style={styles.userInfoText}>Phone: {phoneNumber}</Text>
           <Text style={styles.userInfoText}>Email: {email}</Text>
           <View style={styles.genderContainer}>
@@ -66,9 +59,12 @@ const Profile = () => {
             </Picker>
           </View>
         </View>
-
       </View>
-      {isImageUpdated ? null : (
+      {isImageUpdated ? (
+        <TouchableOpacity style={styles.updatedButton} disabled={true}>
+          <Text style={styles.buttonText}>Profile Image Updated</Text>
+        </TouchableOpacity>
+      ) : (
         <TouchableOpacity style={styles.updateButton} onPress={handleUpdateImage}>
           <Text style={styles.buttonText}>Update Profile Image</Text>
         </TouchableOpacity>
@@ -122,6 +118,12 @@ const styles = StyleSheet.create({
   updateButton: {
     marginTop: 20,
     backgroundColor: '#007bff',
+    padding: 10,
+    borderRadius: 5,
+  },
+  updatedButton: {
+    marginTop: 20,
+    backgroundColor: '#28a745', // Green color indicating success
     padding: 10,
     borderRadius: 5,
   },
